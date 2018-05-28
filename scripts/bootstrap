@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# scripts/bootstrap: Resolve all dependencies that the application requires to run.
+
+cd "$(dirname "$0")/.."
+
+# Install pip.
+if [[ $(pip -V) ]]; then
+    echo "==> Pip is already installed, skipping Pip installation..."
+else
+    echo "==> Installing Pip..."
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python get-pip.py
+fi
+
+# Install virtualenv.
+if [[ $(virtualenv --version) ]]; then
+    echo "==> Virtualenv is already installed, skipping Virtualenv installation..."
+else
+    echo "==> Installing Virtualenv..."
+    pip install virtualenv
+fi
+
+# Create virtualenv.
+if [ -d ".venv" ]; then 
+    echo "==> Virtualenv titled .venv already created, skipping .venv creation..."
+else
+    echo "==> Creating Virtualenv titled .venv..."
+    virtualenv --no-site-packages .venv
+fi
+
+# Start virtualenv and install python dependencies.
+echo "==> Starting virtualenv and installing python dependencies... "
+source .venv/bin/activate
+pip install -r requirements.txt
+deactivate
