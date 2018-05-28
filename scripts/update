@@ -4,7 +4,7 @@
 
 cd "$(dirname "$0")/.."
 
-script/bootstrap
+sh scripts/bootstrap
 
 # @TODO: run all database migrations to ensure everything is up to date.
 
