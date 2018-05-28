@@ -12,6 +12,13 @@
                     <h3>Have Dewy the Seal find your Spotify songs as Youtube covers!</h3>
                     <hr class="intro-divider">
                     </ul>
+                    <h3>Spotify Username</h3>
+                    <form action="/recommendations" method="post">
+                        <p>
+                            {{ form.username(size=32) }}
+                        </p>
+                        <p>{{ form.submit() }}</p>
+                    </form>
                 </div>
             </div>
         </div>

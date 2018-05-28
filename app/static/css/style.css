@@ -70,7 +70,7 @@ p.copyright {
     padding-top: 50px;
     padding-bottom: 50px;
     text-align: center;
-    color: #f8f8f8;
+    color: #ff9966;
     background: url(../img/intro-bg.jpg) no-repeat center center;
     background-size: cover;
     height: 100%;
@@ -90,7 +90,9 @@ p.copyright {
 
 .intro-message > h3 {
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    color: #ff9966;
 }
+
 
 .lead {
     font-size: 18px;

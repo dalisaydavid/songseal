@@ -1,5 +1,7 @@
 # app/__init__.py
 
+import spotify_client
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -25,7 +27,6 @@ from app import models
 
 # Initialize migration handler.
 migrate = Migrate(app, db)
-
 
 # Load the views as blueprints.
 from .recommendations import recommendations as recommendations_blueprint
