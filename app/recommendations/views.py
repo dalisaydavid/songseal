@@ -1,11 +1,16 @@
 # app/recommendations/views.py
 
 from collections import defaultdict
+from functools import partial
 
 from flask import render_template, request, redirect, url_for, current_app
 
 from . import recommendations
 from app import spotify, youtube
+from app import utils
+
+MAX_VIDEO_TITLE_LENGTH = 42
+MAX_VIDEO_COUNT_PER_PAGE = 27
 
 @recommendations.route('/recommendations/<username>', methods=['GET', 'POST'])
 def recommendations_for_user(username):
@@ -25,11 +30,20 @@ def recommendations_for_user(username):
                     'max_results': 5
                 }, 
                 kind='video', 
-                order='viewCount'
+                order='relevance'
             )
         )
 
-    return render_template("recommendations/index.html", title="Recommendations", username=username, videos=videos[:9])
+    videos = map(
+        partial(
+            utils.transform_value_in_tuple,
+            index=0,
+            transform_function=partial(utils.limit_string_length, l=MAX_VIDEO_TITLE_LENGTH)
+        ),
+        videos
+    )
+
+    return render_template("recommendations/index.html", title="Recommendations", username=username, videos=videos[:MAX_VIDEO_COUNT_PER_PAGE])
     
 @recommendations.route('/recommendations', methods=['POST'])
 def recommendations():

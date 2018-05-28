@@ -1,7 +1,5 @@
 # app/__init__.py
 
-import spotify_client
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
