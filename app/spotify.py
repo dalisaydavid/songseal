@@ -18,11 +18,10 @@ class SpotifyClient:
 
             while True:
                 track_names_and_artists = map(
-                    lambda track_item: 
-                        "{name} - {artist}".format(
-                            name=track_item['track']['name'].encode('ascii', 'ignore'),
-                            artist=track_item['track']['artists'][0]['name'].encode('ascii', 'ignore')
-                        )[:50],
+                    lambda track_item: (
+                        track_item['track']['name'].encode('ascii', 'ignore'),
+                        track_item['track']['artists'][0]['name'].encode('ascii', 'ignore')
+                    ),
                     tracks['items']
                 )
 
