@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# scripst/console: Launch a console for the application. Optionally allow an
+#                 environment to be passed in to let the script handle the
+#                 specific requirements for connecting to a console for that
+#                 environment.
+
+cd "$(dirname "$0")/.."
+
+# start virtualenv.
+source .venv/bin/activate
+
+# start python console. @TODO: Make this better.
+python
+
+# deactivate virtualenv.
+deactivate
