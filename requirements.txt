@@ -29,6 +29,7 @@ psycopg2==2.7.4
 ptyprocess==0.5.2
 pyasn1==0.4.3
 pyasn1-modules==0.2.1
+pyOpenSSL==17.2.0
 Pygments==2.2.0
 python-dateutil==2.7.3
 python-editor==1.0.3

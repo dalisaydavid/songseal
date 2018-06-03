@@ -5,13 +5,15 @@
 cd "$(dirname "$0")/.."
 
 # Install pip.
-if [[ $(pip -V) ]]; then
-    echo "==> Pip is already installed, skipping Pip installation..."
-else
-    echo "==> Installing Pip..."
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python get-pip.py
-fi
+check_pip_install(){
+    if [ "$(pip -V | cut -d " " -f 2)" == "10.0.1" ]; then 
+        echo "==> Pip is already installed, skipping Pip installation..."; 
+    else 
+        echo "==> Installing Pip..."
+        curl https://bootstrap.pypa.io/get-pip.py | python
+    fi;
+}
+check_pip_install
 
 # Install virtualenv.
 if [[ $(virtualenv --version) ]]; then
@@ -32,5 +34,6 @@ fi
 # Start virtualenv and install python dependencies.
 echo "==> Starting virtualenv and installing python dependencies... "
 source .venv/bin/activate
+check_pip_install
 pip install -r requirements.txt
 deactivate
